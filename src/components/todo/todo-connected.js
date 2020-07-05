@@ -24,6 +24,7 @@ const ToDo = () => {
       .then(savedItem => {
         setList([...list, savedItem])
       })
+      // eslint-disable-next-line no-console
       .catch(console.error);
   };
 
@@ -48,6 +49,7 @@ const ToDo = () => {
         .then(savedItem => {
           setList(list.map(listItem => listItem._id === item._id ? savedItem : listItem));
         })
+        // eslint-disable-next-line no-console
         .catch(console.error);
     }
   };
@@ -59,6 +61,7 @@ const ToDo = () => {
     })
       .then(data => data.json())
       .then(data => setList(data.results))
+      // eslint-disable-next-line no-console
       .catch(console.error);
   };
 

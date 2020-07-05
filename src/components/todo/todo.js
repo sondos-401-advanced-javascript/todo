@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
-import {Navbar , Container} from 'react-bootstrap';
+import { Navbar, Container } from 'react-bootstrap';
 
 import './todo.scss';
 
@@ -45,29 +45,29 @@ function ToDo() {
 
   return (
     <>
-      
-        <Container>
-        <Navbar bg="dark" variant="dark" style={{marginTop: 2+'em'}}>
-        <Navbar.Brand >There are {count} Items To Complete</Navbar.Brand>
-        
+
+      <Container>
+        <Navbar bg="dark" variant="dark" style={{ marginTop: 2 + 'em' }}>
+          <Navbar.Brand >There are {count} Items To Complete</Navbar.Brand>
+
         </Navbar>
-        
-      <section className="todo">
 
-<div className="form-border">
-  <TodoForm handleSubmit={_addItem} />
-</div>
+        <section className="todo">
 
-<div className="list-group">
-  <TodoList
-    list={list}
-    handleComplete={_toggleComplete}
-  />
-</div>
-</section>
-        </Container>
-        
-      
+          <div className="form-border">
+            <TodoForm handleSubmit={_addItem} />
+          </div>
+
+          <div className="list-group">
+            <TodoList
+              list={list}
+              handleComplete={_toggleComplete}
+            />
+          </div>
+        </section>
+      </Container>
+
+
 
     </>
   );
