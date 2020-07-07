@@ -1,48 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import TodoForm from './form.js';
-import TodoList from './list.js';
+import React, { useState, useEffect, useContext } from 'react';
 import { Navbar, Container } from 'react-bootstrap';
-import useAjax from '../hooks/ajax';
-
+import { FilterContext } from '../context/items';
 import './todo.scss';
 
 function ToDo() {
-  let [list, setList] = useState([]);
+  const context = useContext(FilterContext);
   const [count, setCount] = useState(0);
-  const [addNewItem, updateItem,  deleteItem] = useAjax(addItem);
-
-  function addItem(lists) {
-    setList(lists);
-  }
 
   useEffect(() => {
-    setCount(list.filter(item => !item.complete).length);
+    setCount(context.list.filter(item => !item.complete).length);
     document.title = `There are ${count} Items To Complete`;
-  }, [count, list]);
+  }, [count, context.list]);
 
   return (
     <>
-
       <Container>
         <Navbar bg="dark" variant="dark" style={{ marginTop: 2 + 'em' }}>
           <Navbar.Brand >There are {count} Items To Complete</Navbar.Brand>
-
         </Navbar>
-
-        <section className="todo">
-
-          <div className="form-border">
-            <TodoForm handleSubmit={addNewItem} />
-          </div>
-
-          <div className="list-group">
-            <TodoList list={list} handelDelete={deleteItem} handleComplete={updateItem} />
-          </div>
-        </section>
       </Container>
-
-
-
     </>
   );
 }

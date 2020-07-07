@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext} from 'react';
 import { Form, Button } from 'react-bootstrap';
 import useForm from '../hooks/form';
-
+import {FilterContext} from '../context/items';
 function TodoForm(props) {
   const [item, setItem] = useState({});
   const [handelSubmit,handelChange] = useForm(addItem);
+  const context = useContext(FilterContext);
   function addItem(obj){
-    props.handleSubmit(obj);
+    context.add(obj);
     setItem({...item,obj});
   }
 
