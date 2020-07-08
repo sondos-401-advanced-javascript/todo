@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { ListGroup, Button, Toast, ToastHeader } from 'react-bootstrap';
 import { FilterContext } from '../context/items';
 import { IfRenderer, Then, Else } from '../if/if';
+import Auth from '../auth/auth';
+// import Login from '../auth/login';
+import LoginContext from '../auth/context';
 
 function TodoList() {
 
@@ -9,7 +12,6 @@ function TodoList() {
   let arrays = context.list.sort((a, b) => a.difficulty - b.difficulty);
   let first = context.list.filter((val) => val.complete === false);
   first.sort((a, b) => a.difficulty - b.difficulty);
-
   const _filter = () => {
     if (context.toggle === 'Go to All') {
       context.funToggle('Go Incomplete');
@@ -35,10 +37,18 @@ function TodoList() {
       !item.complete ? word = 'Pending' : word = 'Complete';
       return <Toast key={item._id} >
         <ToastHeader closeButton={false} >
-          <Button className='complete' onClick={() => context.update(item, item._id)}
-            variant={`${stat}`}>{word}</Button>{' '}
+          <LoginContext>
+            <Auth capability="update">
+              <Button className='complete' onClick={() => context.update(item, item._id)}
+                variant={`${stat}`}>{word}</Button>{' '}
+            </Auth>
+          </LoginContext>
           <strong className="mr-auto assign" >{item.assignee}</strong>
-          <Button className='closedel' variant="outline-dark" onClick={() => context.delete(item._id)}>X</Button>
+          <LoginContext>
+            <Auth capability="delete">
+              <Button className='closedel' variant="outline-dark" onClick={() => context.delete(item._id)}>X</Button>
+            </Auth>
+          </LoginContext>
         </ToastHeader>
         <Toast.Body className='assign'>{item.item}</Toast.Body>
         <small className='difficult'>Difficulty: {item.difficulty}</small>
@@ -46,19 +56,17 @@ function TodoList() {
     });
   };
 
-  const _render = (array)=>{
-    if(array.length>3){
+  const _render = (array) => {
+    if (array.length > 3) {
       const result = new Array(Math.ceil(array.length / 3))
-      .fill()
-      .map(() => array.splice(0, 3));
-      
-         return [_getItem(result[context.buttons]),_buttons(result.length)]
+        .fill()
+        .map(() => array.splice(0, 3));
+      return [_getItem(result[context.buttons]), _buttons(result.length)]
     }
-    else{
-      
-      return [_getItem(array),_buttons(0)]
+    else {
+      return [_getItem(array), _buttons(0)]
     }
-   
+
   }
 
 
@@ -69,7 +77,6 @@ function TodoList() {
           <ListGroup>
             {_render(first)}
           </ListGroup>
-
         </Then>
         <Else>
           <ListGroup>

@@ -10,13 +10,13 @@ function ToDo() {
   useEffect(() => {
     setCount(context.list.filter(item => !item.complete).length);
     document.title = `There are ${count} Items To Complete`;
-  }, [count, context.list]);
+  }, [count,context.list]);
 
   return (
     <>
       <Container>
         <Navbar bg="dark" variant="dark" style={{ marginTop: 2 + 'em' }}>
-          <Navbar.Brand >There are {count} Items To Complete</Navbar.Brand>
+          <Navbar.Brand >There are {count} Items To Complete</Navbar.Brand>    
         </Navbar>
       </Container>
     </>
