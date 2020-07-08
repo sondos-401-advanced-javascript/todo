@@ -41,11 +41,11 @@ class Login extends React.Component {
         return (
             <>
                 <IfRender condition={this.context.loggedIn}>
-                    <button onClick={this.context.logout}>Logout</button>
+                    <button onClick={this.context.logout} className='log'>Logout</button>
                 </IfRender>
                 <IfRender condition={!this.context.loggedIn}>
                     <IfSignup condition={this.state.condition}>
-                        <form onSubmit={this.handleSubmit} >
+                        <form onSubmit={this.handleSubmit} className='log'>
                             <input
                                 placeholder="userName"
                                 name="username"
@@ -58,10 +58,10 @@ class Login extends React.Component {
                             />
                             <button>Login</button>
                         </form>
-                        <button onClick={this.handelClick}>SignUp</button>
+                        <button onClick={this.handelClick} className='logs'>SignUp</button>
                     </IfSignup>
                     <IfSignup condition={!this.state.condition}>
-                        <form onSubmit={this.handleSubmitSignUp} >
+                        <form onSubmit={this.handleSubmitSignUp} className='log'>
                             <input
                                 placeholder="userName"
                                 name="username"

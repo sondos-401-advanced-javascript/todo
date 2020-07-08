@@ -26,8 +26,9 @@ const App = () => {
           <FilterContext>
             <LoginContext>
               <Login />
+              <div id='flex'>
               <Auth capability="read">
-                <ToDo />
+              <ToDo />
                 <section className="todo">
                   <div className="list-group">
                     <TodoList />
@@ -35,7 +36,6 @@ const App = () => {
                 </section>
               </Auth>
               <Auth capability="update">
-                {/* <ToDo /> */}
                 <section className="todo">
                   <div className="form-border">
                     <TodoForm />
@@ -45,6 +45,7 @@ const App = () => {
                   </div> */}
                 </section>
               </Auth>
+              </div>
             </LoginContext>
 
           </FilterContext>

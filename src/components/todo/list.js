@@ -74,12 +74,12 @@ function TodoList() {
     <>
       <IfRenderer condition={context.toggle === 'Go to All'} >
         <Then>
-          <ListGroup>
+          <ListGroup className="float-right">
             {_render(first)}
           </ListGroup>
         </Then>
         <Else>
-          <ListGroup>
+          <ListGroup className="float-right">
             {_render(arrays)}
           </ListGroup>
         </Else>
