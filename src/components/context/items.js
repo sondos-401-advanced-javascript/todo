@@ -5,9 +5,11 @@ export const FilterContext = React.createContext();
 function FilterProvider(props){
     let [list, setList] = useState([]);
     let [toggle,setToggle] = useState('Go to All');
-    const [buttons,setButtons] = useState(1);
+    const [buttons,setButtons] = useState(0);
+  const [count, setCount] = useState(0);
     const [addNewItem, updateItem, deleteItem] = useAjax(addItem);
   
+    
     function addItem(lists) {
       setList(lists);
     }
@@ -21,6 +23,8 @@ function FilterProvider(props){
         funToggle: setToggle,
         buttons,
         funButton: setButtons,
+        count,
+        funCount : setCount,
     }
 
     return (
