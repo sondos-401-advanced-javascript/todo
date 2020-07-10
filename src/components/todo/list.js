@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ListGroup, Button, Toast, ToastHeader } from 'react-bootstrap';
 import { FilterContext } from '../context/items';
-import { IfRenderer, Then, Else } from '../if/if';
 import Auth from '../auth/auth';
 // import Login from '../auth/login';
 import LoginContext from '../auth/context';
@@ -10,14 +9,18 @@ function TodoList() {
 
   const context = useContext(FilterContext);
   let arrays = context.list.sort((a, b) => a.difficulty - b.difficulty);
+
   let first = context.list.filter((val) => val.complete === false);
   first.sort((a, b) => a.difficulty - b.difficulty);
+
   const _filter = () => {
     if (context.toggle === 'Go to All') {
       context.funToggle('Go Incomplete');
+      context.funButton(0);
     }
     else {
       context.funToggle('Go to All');
+      context.funButton(0);
     }
   }
 
@@ -57,6 +60,7 @@ function TodoList() {
   };
 
   const _render = (array) => {
+   
     if (array.length > 3) {
       const result = new Array(Math.ceil(array.length / 3))
         .fill()
@@ -68,22 +72,23 @@ function TodoList() {
     }
 
   }
+  const _data = () => {
+    if(context.toggle === 'Go to All'){
+      return <ListGroup className="float-right">
+      {_render(first)}
+    </ListGroup>
+    }
+    else{
+      return  <ListGroup className="float-right">
+      {_render(arrays)}
+    </ListGroup>
+    }
+  }
 
 
   return (
     <>
-      <IfRenderer condition={context.toggle === 'Go to All'} >
-        <Then>
-          <ListGroup className="float-right">
-            {_render(first)}
-          </ListGroup>
-        </Then>
-        <Else>
-          <ListGroup className="float-right">
-            {_render(arrays)}
-          </ListGroup>
-        </Else>
-      </IfRenderer>
+      {_data()}
       <Button className='filter-bt' onClick={() => _filter()}>{context.toggle}</Button>
     </>
   )

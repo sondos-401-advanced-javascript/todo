@@ -15,7 +15,7 @@ function FilterProvider(props){
     }
     useEffect(()=>{
       getAllItems();  
-    },[list]);
+    });
 
     let state = {
         list,
