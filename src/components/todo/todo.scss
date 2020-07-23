@@ -29,7 +29,8 @@ body, html {
     
     margin: 2em;
     .form-border{
-        width: 30%;
+        width: 132% !important;
+        float: left;
         border: gray solid 0.5px;
         margin-right: 2em;
         padding: 1em;
@@ -116,3 +117,34 @@ body, html {
     width: 20%;
     margin-top: 2%;
 }
+
+.log{
+    position: absolute;
+    top: 2.5%;
+    right: 16%;
+}
+.logs{
+    position: absolute;
+    top: 2.5%;
+    right: 10%; 
+}
+
+#flex{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 0 100%;
+    // flex-basis: 100%;
+}
+#flex :nth-child(2) { 
+    order: 1;
+    flex-grow: 5;
+    // width: 50%;
+ }
+ #flex :nth-child(0) { 
+    flex-grow: 2;
+    // width: 50%;
+ }
+#flex :nth-child(0){
+    width: 100%; 
+}
+

@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 
  function useAjax(callback){
@@ -61,11 +61,11 @@ import axios from 'axios';
         callback(response.data);
     }
 
-    useEffect(()=>{
-        getAllItems();
-    });
+    // useEffect(()=>{
+        
+    // });
 
-return [addNewItem, updateItem,  deleteItem,items];
+return [addNewItem, updateItem,  deleteItem,getAllItems,items];
 }
 
 export default useAjax;

@@ -13,7 +13,7 @@ function TodoForm(props) {
 
   return (
     <>
-      <Form onSubmit={handelSubmit} >
+      <Form onSubmit={handelSubmit} className="float-left">
         <Form.Group controlId="formBasicEmail" >
           <h3>Add Item</h3>
           <Form.Label>To Do Item</Form.Label>

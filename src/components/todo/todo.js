@@ -5,12 +5,13 @@ import './todo.scss';
 
 function ToDo() {
   const context = useContext(FilterContext);
+  let array = context.list.filter(item => !item.complete);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setCount(context.list.filter(item => !item.complete).length);
+    setCount(array.length);
     document.title = `There are ${count} Items To Complete`;
-  }, [count, context.list]);
+  }, [count, array]);
 
   return (
     <>
